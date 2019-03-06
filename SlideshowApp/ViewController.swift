@@ -11,11 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    
+    var name:String = "eto_mark01_nezumi"
     
     //12枚の画像に番号をつけて処理する
     // 表示している画像の番号
     var dispImageNo = 0
+    
     /// 表示している画像の番号を元に画像を表示する
     func displayImage() {
         // 画像の名前の配列
@@ -44,12 +45,11 @@ class ViewController: UIViewController {
         }
         
         // 表示している画像の番号から名前を取り出し
-        let name = imageNameArray[dispImageNo]
+        name = imageNameArray[dispImageNo]
         
         // 画像を読み込み
         let image = UIImage(named: name)
         
-        // Image Viewに読み込んだ画像をセット
         imageView.image = image
         
     }
@@ -69,8 +69,8 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // segueから遷移先のResultViewControllerを取得する
         let ResultViewController:ResultViewController = segue.destination as! ResultViewController
-        // 遷移先のResultViewControllerで宣言しているviewerImgに値を代入して渡す
-        ResultViewController.viewerImg = name.text
+        // 遷移先のResultViewControllerで宣言しているviewerImgNameに値を代入して渡す
+        ResultViewController.viewerImgName = name
     }
 
     
@@ -93,7 +93,6 @@ class ViewController: UIViewController {
         // 画像を表示するメソッドを呼ぶ
         displayImage()
         //再生ボタンがタップされたときは動かない
-        
     }
     
     
@@ -107,30 +106,28 @@ class ViewController: UIViewController {
     //1秒ずつカウントするタイマー
     @objc func updateTimer(_ timer: Timer) {
         self.timer_sec += 1
-    }
-
-    
-    @IBAction func slideShow(_ sender: Any) {
-        
-        if self.timer != nil {
-            timer?.invalidate()
-            timer = nil
-        } else {
-            
-           self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
-        }
-        
-    }
-    
-    //2秒ごとに呼ばれるメソッド
-    @objc func updateTimer(){
         // 表示している画像の番号を1増やす
         dispImageNo += 1
         // 画像を表示するメソッドを呼ぶ
         displayImage()
     }
-    
 
+    // ボタンのインスタンス生成
+    let StartStop = UIButton()
+    
+    @IBAction func StartStop(_ sender: Any) {
+        if self.timer != nil {
+            StartStop.setTitle("停止", for: .normal)
+            self.timer.invalidate() // タイマーを停止する
+            self.timer = nil
+        } else {
+             StartStop.setTitle("再生", for: .normal)
+            self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
+
+        }
+        
+    }
+    
     @IBAction func unwind(_ segue: UIStoryboardSegue) {
     }
 

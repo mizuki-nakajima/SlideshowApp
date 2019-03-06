@@ -10,18 +10,18 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
-
     @IBOutlet weak var ResultView: UIImageView!
-    var viewerImg: UIImage!
+    var viewerImgName: String = ""
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        let viewerImg = UIImage(named: viewerImgName)
+        print("viewerImg")
+        print(viewerImgName)
         ResultView.image = viewerImg
     }
     
-
     /*
     // MARK: - Navigation
 
