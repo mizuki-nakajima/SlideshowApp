@@ -35,12 +35,13 @@ class ViewController: UIViewController {
             "eto_mark12_inoshishi",
             ]
         //最後の画像の表示時は進むで最初の画像が表示され，最初の画像の表示時は戻るボタンで最後の画像が表示
+        //11ではなく，配列の中身カウントすれば増減しても対応できる
         if dispImageNo < 0 {
-            dispImageNo = 11
+            dispImageNo = imageNameArray.count - 1
         }
         
         // 範囲より上を指している場合、最初の画像を表示
-        if dispImageNo > 11 {
+        if dispImageNo > imageNameArray.count - 1 {
             dispImageNo = 0
         }
         
@@ -71,6 +72,17 @@ class ViewController: UIViewController {
         let ResultViewController:ResultViewController = segue.destination as! ResultViewController
         // 遷移先のResultViewControllerで宣言しているviewerImgNameに値を代入して渡す
         ResultViewController.viewerImgName = name
+        
+        //遷移時たTimerが動いていれば止める
+        if self.timer != nil{
+            //スライドショー停止時は「進む」「戻る」ボタンを有効にする
+            onNext.isEnabled = true
+            onPrev.isEnabled = true
+            StartStop.setTitle("再生", for: UIControl.State.normal)
+            self.timer.invalidate() // タイマーを停止する
+            self.timer = nil
+        }
+        
     }
 
 
@@ -98,11 +110,11 @@ class ViewController: UIViewController {
     // タイマー
     var timer: Timer!
     // タイマー用の時間のための変数
-    var timer_sec: Float = 0
+    //var timer_sec: Float = 0
     
     //1秒ずつカウントするタイマー
     @objc func updateTimer(_ timer: Timer) {
-        self.timer_sec += 1
+        //self.timer_sec += 1
         // 表示している画像の番号を1増やす
         dispImageNo += 1
         // 画像を表示するメソッドを呼ぶ

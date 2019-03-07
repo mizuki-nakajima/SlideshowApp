@@ -57,32 +57,32 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SlideshowApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppL-Nm-3OH">
-                                <rect key="frame" x="10" y="497" width="287" height="30"/>
+                                <rect key="frame" x="10" y="318.5" width="117.5" height="30"/>
                                 <state key="normal" title="戻る"/>
                                 <connections>
                                     <action selector="onPrev:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n6s-jC-DIk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJK-Z4-MbR">
-                                <rect key="frame" x="471" y="497" width="287" height="30"/>
+                                <rect key="frame" x="247.5" y="318.5" width="117.5" height="30"/>
                                 <state key="normal" title="進む"/>
                                 <connections>
                                     <action selector="onNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCX-3z-AJb"/>
                                 </connections>
                             </button>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7E3-g2-9DG">
-                                <rect key="frame" x="307" y="233" width="154" height="558"/>
+                                <rect key="frame" x="137.5" y="233" width="100" height="201"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zDX-Ck-3R9" appends="YES" id="46m-fb-vFK"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="StartStop" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htO-T3-Hgp">
-                                <rect key="frame" x="359" y="911" width="50" height="33"/>
+                                <rect key="frame" x="162.5" y="554" width="50" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="WhP-69-JV0"/>
                                 </constraints>
