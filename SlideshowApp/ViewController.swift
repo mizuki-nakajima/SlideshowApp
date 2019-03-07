@@ -73,26 +73,23 @@ class ViewController: UIViewController {
         ResultViewController.viewerImgName = name
     }
 
-    
-    
+
     //「戻る」の動き
+    @IBOutlet weak var onPrev: UIButton!
     @IBAction func onPrev(_ sender: Any) {
         // 表示している画像の番号を1減らす
         dispImageNo -= 1
         // 画像を表示するメソッドを呼ぶ
         displayImage()
-        
-        //再生ボタンがタップされたときは動かない
-        
     }
     
     //「進む」の動き
+    @IBOutlet weak var onNext: UIButton!
     @IBAction func onNext(_ sender: Any) {
         // 表示している画像の番号を1増やす
         dispImageNo += 1
         // 画像を表示するメソッドを呼ぶ
         displayImage()
-        //再生ボタンがタップされたときは動かない
     }
     
     
@@ -113,15 +110,22 @@ class ViewController: UIViewController {
     }
 
     // ボタンのインスタンス生成
-    let StartStop = UIButton()
+    
+    @IBOutlet weak var StartStop: UIButton!
     
     @IBAction func StartStop(_ sender: Any) {
         if self.timer != nil {
-            StartStop.setTitle("停止", for: .normal)
+            //スライドショー停止時は「進む」「戻る」ボタンを有効にする
+            onNext.isEnabled = true
+            onPrev.isEnabled = true
+            StartStop.setTitle("再生", for: UIControl.State.normal)
             self.timer.invalidate() // タイマーを停止する
             self.timer = nil
         } else {
-             StartStop.setTitle("再生", for: .normal)
+            //スライドショー実行時は「進む」「戻る」ボタンを無効にする
+            onNext.isEnabled = false
+            onPrev.isEnabled = false
+             StartStop.setTitle("停止", for: UIControl.State.normal)
             self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateTimer(_:)), userInfo: nil, repeats: true)
 
         }
